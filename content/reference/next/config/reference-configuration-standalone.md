@@ -1487,7 +1487,7 @@ When a namespace is created without specifying the number of bundle, this value 
 
 **Default**: `4`
 
-**Dynamic**: `false`
+**Dynamic**: `true`
 
 **Category**: Policies
 
