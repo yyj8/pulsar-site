@@ -2718,6 +2718,12 @@
                         "format": "byte"
                     }
                 },
+                "replicated": {
+                    "type": "boolean"
+                },
+                "topicName": {
+                    "type": "string"
+                },
                 "messageId": {
                     "$ref": "#/definitions/MessageId"
                 },
@@ -2734,12 +2740,6 @@
                 "brokerPublishTime": {
                     "type": "integer",
                     "format": "int64"
-                },
-                "replicated": {
-                    "type": "boolean"
-                },
-                "topicName": {
-                    "type": "string"
                 },
                 "keyBytes": {
                     "type": "array",
@@ -2872,12 +2872,6 @@
                 "typeFactory": {
                     "$ref": "#/definitions/TypeFactory"
                 },
-                "serializationConfig": {
-                    "$ref": "#/definitions/SerializationConfig"
-                },
-                "deserializationConfig": {
-                    "$ref": "#/definitions/DeserializationConfig"
-                },
                 "deserializationContext": {
                     "$ref": "#/definitions/DeserializationContext"
                 },
@@ -2898,6 +2892,12 @@
                 },
                 "propertyNamingStrategy": {
                     "$ref": "#/definitions/PropertyNamingStrategy"
+                },
+                "serializationConfig": {
+                    "$ref": "#/definitions/SerializationConfig"
+                },
+                "deserializationConfig": {
+                    "$ref": "#/definitions/DeserializationConfig"
                 },
                 "nodeFactory": {
                     "$ref": "#/definitions/JsonNodeFactory"
