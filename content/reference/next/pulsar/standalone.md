@@ -12,7 +12,7 @@ $ pulsar standalone options
 | `-g, --generate-docs` | Generate docs|true|
 | `-h, --help` | Show this help message|false|
 | `--wipe-data` | Clean up previous ZK/BK data|false|
-| `-fwc, --functions-worker-conf` | Configuration file for Functions Worker|/pulsar/conf/functions_worker.yml|
+| `-fwc, --functions-worker-conf` | Configuration file for Functions Worker|/home/runner/work/pulsar-site/pulsar-site/tmp/pulsar/conf/functions_worker.yml|
 | `-nss, --no-stream-storage` | Disable stream storage|false|
 | `--metadata-url` | Metadata store url||
 | `--no-broker` | Only start ZK and BK services, no broker|false|
@@ -22,7 +22,7 @@ $ pulsar standalone options
 | `--metadata-dir` | Directory for storing metadata|data/metadata|
 | `--stream-storage-port` | Local bookies stream storage port|4181|
 | `-a, --advertised-address` | Standalone broker advertised address|null|
-| `-c, --config` | Configuration file path|/pulsar/conf/standalone.conf|
+| `-c, --config` | Configuration file path|/home/runner/work/pulsar-site/pulsar-site/tmp/pulsar/conf/standalone.conf|
 | `--zookeeper-port` | Local zookeeper's port|2181|
 | `--bookkeeper-port` | Local bookies base port|3181|
 | `--bookkeeper-dir` | Local bookies base data directory|data/standalone/bookkeeper|

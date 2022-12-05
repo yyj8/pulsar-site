@@ -4376,7 +4376,7 @@ Ack quorum (Qa) size, Number of guaranteed copies (acks to wait for before a wri
 
 ### managedLedgerDefaultEnsembleSize
 Ensemble (E) size, Number of bookies to use for storing entries in a ledger.
-Please notice that sticky reads enabled by bookkeeperEnableStickyReads=true aren?t used  unless ensemble size (E) equals write quorum (Qw) size.
+Please notice that sticky reads enabled by bookkeeperEnableStickyReads=true aren’t used  unless ensemble size (E) equals write quorum (Qw) size.
 
 **Type**: `int`
 
