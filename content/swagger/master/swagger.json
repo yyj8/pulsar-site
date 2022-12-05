@@ -23462,9 +23462,6 @@
         "peerAddress" : {
           "$ref" : "#/definitions/SocketAddress"
         },
-        "subscription" : {
-          "type" : "string"
-        },
         "tlsCertificates" : {
           "type" : "array",
           "items" : {
@@ -23475,6 +23472,9 @@
           "type" : "string"
         },
         "commandData" : {
+          "type" : "string"
+        },
+        "subscription" : {
           "type" : "string"
         }
       }
@@ -23532,6 +23532,10 @@
           "type" : "string",
           "enum" : [ "producer_request_hold", "producer_exception", "consumer_backlog_eviction" ]
         },
+        "limit" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
         "limitSize" : {
           "type" : "integer",
           "format" : "int64"
@@ -23539,10 +23543,6 @@
         "limitTime" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "limit" : {
-          "type" : "integer",
-          "format" : "int64"
         }
       }
     },
@@ -23589,10 +23589,10 @@
     "BookieAffinityGroupData" : {
       "type" : "object",
       "properties" : {
-        "bookkeeperAffinityGroupPrimary" : {
+        "bookkeeperAffinityGroupSecondary" : {
           "type" : "string"
         },
-        "bookkeeperAffinityGroupSecondary" : {
+        "bookkeeperAffinityGroupPrimary" : {
           "type" : "string"
         }
       }
@@ -23600,10 +23600,10 @@
     "BookieInfo" : {
       "type" : "object",
       "properties" : {
-        "rack" : {
+        "hostname" : {
           "type" : "string"
         },
-        "hostname" : {
+        "rack" : {
           "type" : "string"
         }
       }
@@ -24173,11 +24173,11 @@
         "typeFactory" : {
           "$ref" : "#/definitions/TypeFactory"
         },
-        "propertyNamingStrategy" : {
-          "$ref" : "#/definitions/PropertyNamingStrategy"
-        },
         "handlerInstantiator" : {
           "$ref" : "#/definitions/HandlerInstantiator"
+        },
+        "propertyNamingStrategy" : {
+          "$ref" : "#/definitions/PropertyNamingStrategy"
         },
         "dateFormat" : {
           "$ref" : "#/definitions/DateFormat"
@@ -24301,19 +24301,19 @@
     "FunctionInstanceStatsData" : {
       "type" : "object",
       "properties" : {
-        "lastInvocation" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "oneMin" : {
-          "$ref" : "#/definitions/FunctionInstanceStatsDataBase"
-        },
         "userMetrics" : {
           "type" : "object",
           "additionalProperties" : {
             "type" : "number",
             "format" : "double"
           }
+        },
+        "lastInvocation" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "oneMin" : {
+          "$ref" : "#/definitions/FunctionInstanceStatsDataBase"
         },
         "receivedTotal" : {
           "type" : "integer",
@@ -24632,9 +24632,6 @@
         "prettyPrinter" : {
           "$ref" : "#/definitions/PrettyPrinter"
         },
-        "currentValue" : {
-          "type" : "object"
-        },
         "featureMask" : {
           "type" : "integer",
           "format" : "int32"
@@ -24642,6 +24639,9 @@
         "formatFeatures" : {
           "type" : "integer",
           "format" : "int32"
+        },
+        "currentValue" : {
+          "type" : "object"
         },
         "highestEscapedChar" : {
           "type" : "integer",
@@ -24754,12 +24754,6 @@
         "tokenLocation" : {
           "$ref" : "#/definitions/JsonLocation"
         },
-        "inputSource" : {
-          "type" : "object"
-        },
-        "currentValue" : {
-          "type" : "object"
-        },
         "featureMask" : {
           "type" : "integer",
           "format" : "int32"
@@ -24767,20 +24761,6 @@
         "formatFeatures" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "valueAsLong" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "valueAsDouble" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "valueAsBoolean" : {
-          "type" : "boolean"
-        },
-        "valueAsString" : {
-          "type" : "string"
         },
         "currentTokenId" : {
           "type" : "integer",
@@ -24832,6 +24812,26 @@
         "valueAsInt" : {
           "type" : "integer",
           "format" : "int32"
+        },
+        "valueAsLong" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "valueAsDouble" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "valueAsBoolean" : {
+          "type" : "boolean"
+        },
+        "valueAsString" : {
+          "type" : "string"
+        },
+        "inputSource" : {
+          "type" : "object"
+        },
+        "currentValue" : {
+          "type" : "object"
         },
         "closed" : {
           "type" : "boolean"
@@ -25119,13 +25119,15 @@
           "type" : "number",
           "format" : "double"
         },
-        "msgThroughputOut" : {
-          "type" : "number",
-          "format" : "double"
+        "cpu" : {
+          "$ref" : "#/definitions/ResourceUsage"
         },
-        "msgThroughputIn" : {
-          "type" : "number",
-          "format" : "double"
+        "directMemory" : {
+          "$ref" : "#/definitions/ResourceUsage"
+        },
+        "lastUpdate" : {
+          "type" : "integer",
+          "format" : "int64"
         },
         "underLoaded" : {
           "type" : "boolean"
@@ -25136,14 +25138,13 @@
         "loadReportType" : {
           "type" : "string"
         },
-        "cpu" : {
-          "$ref" : "#/definitions/ResourceUsage"
+        "msgThroughputIn" : {
+          "type" : "number",
+          "format" : "double"
         },
-        "memory" : {
-          "$ref" : "#/definitions/ResourceUsage"
-        },
-        "directMemory" : {
-          "$ref" : "#/definitions/ResourceUsage"
+        "msgThroughputOut" : {
+          "type" : "number",
+          "format" : "double"
         },
         "bandwidthIn" : {
           "$ref" : "#/definitions/ResourceUsage"
@@ -25151,9 +25152,8 @@
         "bandwidthOut" : {
           "$ref" : "#/definitions/ResourceUsage"
         },
-        "lastUpdate" : {
-          "type" : "integer",
-          "format" : "int64"
+        "memory" : {
+          "$ref" : "#/definitions/ResourceUsage"
         }
       }
     },
@@ -25508,33 +25508,71 @@
     "OffloadPolicies" : {
       "type" : "object",
       "properties" : {
-        "s3ManagedLedgerOffloadRole" : {
-          "type" : "string"
-        },
-        "s3ManagedLedgerOffloadRoleSessionName" : {
-          "type" : "string"
-        },
         "gcsManagedLedgerOffloadRegion" : {
           "type" : "string"
         },
-        "gcsManagedLedgerOffloadBucket" : {
+        "s3ManagedLedgerOffloadCredentialId" : {
+          "type" : "string"
+        },
+        "s3ManagedLedgerOffloadRegion" : {
+          "type" : "string"
+        },
+        "managedLedgerOffloadedReadPriority" : {
+          "type" : "string",
+          "enum" : [ "BOOKKEEPER_FIRST", "TIERED_STORAGE_FIRST" ]
+        },
+        "fileSystemURI" : {
+          "type" : "string"
+        },
+        "s3ManagedLedgerOffloadRole" : {
+          "type" : "string"
+        },
+        "managedLedgerOffloadMaxThreads" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "offloadersDirectory" : {
+          "type" : "string"
+        },
+        "managedLedgerOffloadDriver" : {
+          "type" : "string"
+        },
+        "s3ManagedLedgerOffloadServiceEndpoint" : {
+          "type" : "string"
+        },
+        "s3ManagedLedgerOffloadBucket" : {
           "type" : "string"
         },
         "gcsManagedLedgerOffloadMaxBlockSizeInBytes" : {
           "type" : "integer",
           "format" : "int32"
         },
+        "s3ManagedLedgerOffloadCredentialSecret" : {
+          "type" : "string"
+        },
         "gcsManagedLedgerOffloadReadBufferSizeInBytes" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "gcsManagedLedgerOffloadServiceAccountKeyFile" : {
+        "managedLedgerOffloadMaxBlockSizeInBytes" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "managedLedgerOffloadPrefetchRounds" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "managedLedgerOffloadReadBufferSizeInBytes" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "gcsManagedLedgerOffloadBucket" : {
+          "type" : "string"
+        },
+        "s3ManagedLedgerOffloadRoleSessionName" : {
           "type" : "string"
         },
         "fileSystemProfilePath" : {
-          "type" : "string"
-        },
-        "fileSystemURI" : {
           "type" : "string"
         },
         "managedLedgerOffloadBucket" : {
@@ -25543,42 +25581,11 @@
         "managedLedgerOffloadRegion" : {
           "type" : "string"
         },
-        "managedLedgerOffloadServiceEndpoint" : {
-          "type" : "string"
-        },
-        "managedLedgerOffloadMaxBlockSizeInBytes" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "managedLedgerOffloadReadBufferSizeInBytes" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "managedLedgerOffloadedReadPriority" : {
-          "type" : "string",
-          "enum" : [ "BOOKKEEPER_FIRST", "TIERED_STORAGE_FIRST" ]
-        },
-        "s3ManagedLedgerOffloadRegion" : {
-          "type" : "string"
-        },
-        "s3ManagedLedgerOffloadBucket" : {
-          "type" : "string"
-        },
-        "s3ManagedLedgerOffloadServiceEndpoint" : {
-          "type" : "string"
-        },
-        "s3ManagedLedgerOffloadMaxBlockSizeInBytes" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
         "s3ManagedLedgerOffloadReadBufferSizeInBytes" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "s3ManagedLedgerOffloadCredentialId" : {
-          "type" : "string"
-        },
-        "s3ManagedLedgerOffloadCredentialSecret" : {
+        "gcsManagedLedgerOffloadServiceAccountKeyFile" : {
           "type" : "string"
         },
         "managedLedgerOffloadDeletionLagInMillis" : {
@@ -25593,19 +25600,12 @@
           "type" : "integer",
           "format" : "int64"
         },
-        "managedLedgerOffloadDriver" : {
-          "type" : "string"
-        },
-        "offloadersDirectory" : {
-          "type" : "string"
-        },
-        "managedLedgerOffloadMaxThreads" : {
+        "s3ManagedLedgerOffloadMaxBlockSizeInBytes" : {
           "type" : "integer",
           "format" : "int32"
         },
-        "managedLedgerOffloadPrefetchRounds" : {
-          "type" : "integer",
-          "format" : "int32"
+        "managedLedgerOffloadServiceEndpoint" : {
+          "type" : "string"
         }
       }
     },
@@ -25711,10 +25711,10 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "s3Driver" : {
+        "gcsDriver" : {
           "type" : "boolean"
         },
-        "gcsDriver" : {
+        "s3Driver" : {
           "type" : "boolean"
         },
         "fileSystemDriver" : {
@@ -26464,11 +26464,11 @@
         "typeFactory" : {
           "$ref" : "#/definitions/TypeFactory"
         },
-        "propertyNamingStrategy" : {
-          "$ref" : "#/definitions/PropertyNamingStrategy"
-        },
         "handlerInstantiator" : {
           "$ref" : "#/definitions/HandlerInstantiator"
+        },
+        "propertyNamingStrategy" : {
+          "$ref" : "#/definitions/PropertyNamingStrategy"
         },
         "dateFormat" : {
           "$ref" : "#/definitions/DateFormat"
@@ -27164,17 +27164,11 @@
     "WorkerService" : {
       "type" : "object",
       "properties" : {
-        "sources" : {
-          "$ref" : "#/definitions/SourcesWorkerService"
-        },
         "initialized" : {
           "type" : "boolean"
         },
-        "functionsV2" : {
-          "$ref" : "#/definitions/FunctionsV2WorkerService"
-        },
-        "workers" : {
-          "$ref" : "#/definitions/WorkersWorkerService"
+        "sources" : {
+          "$ref" : "#/definitions/SourcesWorkerService"
         },
         "workerConfig" : {
           "$ref" : "#/definitions/WorkerConfig"
@@ -27184,6 +27178,12 @@
         },
         "sinks" : {
           "$ref" : "#/definitions/SinksWorkerService"
+        },
+        "functionsV2" : {
+          "$ref" : "#/definitions/FunctionsV2WorkerService"
+        },
+        "workers" : {
+          "$ref" : "#/definitions/WorkersWorkerService"
         }
       }
     },
