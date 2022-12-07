@@ -23462,7 +23462,10 @@
         "peerAddress" : {
           "$ref" : "#/definitions/SocketAddress"
         },
-        "subscription" : {
+        "commandData" : {
+          "type" : "string"
+        },
+        "httpAuthType" : {
           "type" : "string"
         },
         "tlsCertificates" : {
@@ -23471,10 +23474,7 @@
             "$ref" : "#/definitions/Certificate"
           }
         },
-        "httpAuthType" : {
-          "type" : "string"
-        },
-        "commandData" : {
+        "subscription" : {
           "type" : "string"
         }
       }
@@ -24301,19 +24301,19 @@
     "FunctionInstanceStatsData" : {
       "type" : "object",
       "properties" : {
-        "userMetrics" : {
-          "type" : "object",
-          "additionalProperties" : {
-            "type" : "number",
-            "format" : "double"
-          }
-        },
         "lastInvocation" : {
           "type" : "integer",
           "format" : "int64"
         },
         "oneMin" : {
           "$ref" : "#/definitions/FunctionInstanceStatsDataBase"
+        },
+        "userMetrics" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "number",
+            "format" : "double"
+          }
         },
         "receivedTotal" : {
           "type" : "integer",
@@ -24532,6 +24532,9 @@
         "abstract" : {
           "type" : "boolean"
         },
+        "contentType" : {
+          "$ref" : "#/definitions/JavaType"
+        },
         "bindings" : {
           "$ref" : "#/definitions/TypeBindings"
         },
@@ -24583,9 +24586,6 @@
         "mapLikeType" : {
           "type" : "boolean"
         },
-        "contentType" : {
-          "$ref" : "#/definitions/JavaType"
-        },
         "typeName" : {
           "type" : "string"
         },
@@ -24620,6 +24620,9 @@
     "JsonGenerator" : {
       "type" : "object",
       "properties" : {
+        "closed" : {
+          "type" : "boolean"
+        },
         "schema" : {
           "$ref" : "#/definitions/FormatSchema"
         },
@@ -24632,6 +24635,9 @@
         "prettyPrinter" : {
           "$ref" : "#/definitions/PrettyPrinter"
         },
+        "currentValue" : {
+          "type" : "object"
+        },
         "featureMask" : {
           "type" : "integer",
           "format" : "int32"
@@ -24639,9 +24645,6 @@
         "formatFeatures" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "currentValue" : {
-          "type" : "object"
         },
         "highestEscapedChar" : {
           "type" : "integer",
@@ -24656,9 +24659,6 @@
         },
         "outputContext" : {
           "$ref" : "#/definitions/JsonStreamContext"
-        },
-        "closed" : {
-          "type" : "boolean"
         }
       }
     },
@@ -24698,6 +24698,9 @@
         },
         "text" : {
           "type" : "string"
+        },
+        "closed" : {
+          "type" : "boolean"
         },
         "textCharacters" : {
           "type" : "array",
@@ -24754,6 +24757,12 @@
         "tokenLocation" : {
           "$ref" : "#/definitions/JsonLocation"
         },
+        "inputSource" : {
+          "type" : "object"
+        },
+        "currentValue" : {
+          "type" : "object"
+        },
         "featureMask" : {
           "type" : "integer",
           "format" : "int32"
@@ -24761,6 +24770,20 @@
         "formatFeatures" : {
           "type" : "integer",
           "format" : "int32"
+        },
+        "valueAsLong" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "valueAsDouble" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "valueAsBoolean" : {
+          "type" : "boolean"
+        },
+        "valueAsString" : {
+          "type" : "string"
         },
         "currentTokenId" : {
           "type" : "integer",
@@ -24812,29 +24835,6 @@
         "valueAsInt" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "valueAsLong" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "valueAsDouble" : {
-          "type" : "number",
-          "format" : "double"
-        },
-        "valueAsBoolean" : {
-          "type" : "boolean"
-        },
-        "valueAsString" : {
-          "type" : "string"
-        },
-        "inputSource" : {
-          "type" : "object"
-        },
-        "currentValue" : {
-          "type" : "object"
-        },
-        "closed" : {
-          "type" : "boolean"
         }
       }
     },
@@ -24863,13 +24863,6 @@
         "parent" : {
           "$ref" : "#/definitions/JsonStreamContext"
         },
-        "typeDesc" : {
-          "type" : "string"
-        },
-        "currentIndex" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
         "currentName" : {
           "type" : "string"
         },
@@ -24877,6 +24870,13 @@
           "type" : "object"
         },
         "entryCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "typeDesc" : {
+          "type" : "string"
+        },
+        "currentIndex" : {
           "type" : "integer",
           "format" : "int32"
         }
@@ -25119,28 +25119,14 @@
           "type" : "number",
           "format" : "double"
         },
-        "cpu" : {
-          "$ref" : "#/definitions/ResourceUsage"
-        },
-        "memory" : {
-          "$ref" : "#/definitions/ResourceUsage"
-        },
-        "directMemory" : {
-          "$ref" : "#/definitions/ResourceUsage"
-        },
         "bandwidthIn" : {
           "$ref" : "#/definitions/ResourceUsage"
         },
         "bandwidthOut" : {
           "$ref" : "#/definitions/ResourceUsage"
         },
-        "lastUpdate" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "msgThroughputIn" : {
-          "type" : "number",
-          "format" : "double"
+        "memory" : {
+          "$ref" : "#/definitions/ResourceUsage"
         },
         "msgThroughputOut" : {
           "type" : "number",
@@ -25154,6 +25140,20 @@
         },
         "loadReportType" : {
           "type" : "string"
+        },
+        "msgThroughputIn" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "cpu" : {
+          "$ref" : "#/definitions/ResourceUsage"
+        },
+        "directMemory" : {
+          "$ref" : "#/definitions/ResourceUsage"
+        },
+        "lastUpdate" : {
+          "type" : "integer",
+          "format" : "int64"
         }
       }
     },
@@ -25581,6 +25581,20 @@
           "type" : "integer",
           "format" : "int32"
         },
+        "managedLedgerOffloadMaxThreads" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "managedLedgerOffloadPrefetchRounds" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "managedLedgerOffloadDriver" : {
+          "type" : "string"
+        },
+        "offloadersDirectory" : {
+          "type" : "string"
+        },
         "managedLedgerOffloadDeletionLagInMillis" : {
           "type" : "integer",
           "format" : "int64"
@@ -25592,20 +25606,6 @@
         "managedLedgerOffloadThresholdInSeconds" : {
           "type" : "integer",
           "format" : "int64"
-        },
-        "managedLedgerOffloadDriver" : {
-          "type" : "string"
-        },
-        "offloadersDirectory" : {
-          "type" : "string"
-        },
-        "managedLedgerOffloadMaxThreads" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "managedLedgerOffloadPrefetchRounds" : {
-          "type" : "integer",
-          "format" : "int32"
         }
       }
     },
@@ -26363,11 +26363,11 @@
     "ResourceUnit" : {
       "type" : "object",
       "properties" : {
-        "resourceId" : {
-          "type" : "string"
-        },
         "availableResource" : {
           "$ref" : "#/definitions/ResourceDescription"
+        },
+        "resourceId" : {
+          "type" : "string"
         }
       }
     },
@@ -26496,6 +26496,9 @@
         "timeZone" : {
           "$ref" : "#/definitions/TimeZone"
         },
+        "generator" : {
+          "$ref" : "#/definitions/JsonGenerator"
+        },
         "config" : {
           "$ref" : "#/definitions/SerializationConfig"
         },
@@ -26513,9 +26516,6 @@
         },
         "defaultNullKeySerializer" : {
           "$ref" : "#/definitions/JsonSerializerObject"
-        },
-        "generator" : {
-          "$ref" : "#/definitions/JsonGenerator"
         }
       }
     },
@@ -27170,20 +27170,20 @@
         "initialized" : {
           "type" : "boolean"
         },
-        "functionsV2" : {
-          "$ref" : "#/definitions/FunctionsV2WorkerService"
-        },
-        "workers" : {
-          "$ref" : "#/definitions/WorkersWorkerService"
-        },
-        "workerConfig" : {
-          "$ref" : "#/definitions/WorkerConfig"
-        },
         "functions" : {
           "$ref" : "#/definitions/FunctionsWorkerService"
         },
         "sinks" : {
           "$ref" : "#/definitions/SinksWorkerService"
+        },
+        "workerConfig" : {
+          "$ref" : "#/definitions/WorkerConfig"
+        },
+        "functionsV2" : {
+          "$ref" : "#/definitions/FunctionsV2WorkerService"
+        },
+        "workers" : {
+          "$ref" : "#/definitions/WorkersWorkerService"
         }
       }
     },
