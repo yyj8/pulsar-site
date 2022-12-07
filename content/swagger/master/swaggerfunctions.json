@@ -1016,9 +1016,6 @@
         "peerAddress" : {
           "$ref" : "#/definitions/SocketAddress"
         },
-        "commandData" : {
-          "type" : "string"
-        },
         "tlsCertificates" : {
           "type" : "array",
           "items" : {
@@ -1026,6 +1023,9 @@
           }
         },
         "httpAuthType" : {
+          "type" : "string"
+        },
+        "commandData" : {
           "type" : "string"
         },
         "subscription" : {
@@ -1303,11 +1303,11 @@
         "rootName" : {
           "type" : "string"
         },
-        "fullRootName" : {
-          "$ref" : "#/definitions/PropertyName"
-        },
         "subtypeResolver" : {
           "$ref" : "#/definitions/SubtypeResolver"
+        },
+        "fullRootName" : {
+          "$ref" : "#/definitions/PropertyName"
         },
         "defaultVisibilityChecker" : {
           "$ref" : "#/definitions/VisibilityCheckerObject"
@@ -1321,11 +1321,11 @@
         "typeFactory" : {
           "$ref" : "#/definitions/TypeFactory"
         },
-        "handlerInstantiator" : {
-          "$ref" : "#/definitions/HandlerInstantiator"
-        },
         "propertyNamingStrategy" : {
           "$ref" : "#/definitions/PropertyNamingStrategy"
+        },
+        "handlerInstantiator" : {
+          "$ref" : "#/definitions/HandlerInstantiator"
         },
         "dateFormat" : {
           "$ref" : "#/definitions/DateFormat"
@@ -1642,12 +1642,12 @@
     "FunctionInstanceStatsData" : {
       "type" : "object",
       "properties" : {
-        "oneMin" : {
-          "$ref" : "#/definitions/FunctionInstanceStatsDataBase"
-        },
         "lastInvocation" : {
           "type" : "integer",
           "format" : "int64"
+        },
+        "oneMin" : {
+          "$ref" : "#/definitions/FunctionInstanceStatsDataBase"
         },
         "userMetrics" : {
           "type" : "object",
@@ -2421,6 +2421,23 @@
         "topicName" : {
           "type" : "string"
         },
+        "messageId" : {
+          "$ref" : "#/definitions/MessageId"
+        },
+        "encryptionCtx" : {
+          "$ref" : "#/definitions/EncryptionContext"
+        },
+        "redeliveryCount" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "readerSchema" : {
+          "$ref" : "#/definitions/SchemaObject"
+        },
+        "brokerPublishTime" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
         "publishTime" : {
           "type" : "integer",
           "format" : "int64"
@@ -2455,23 +2472,6 @@
         },
         "replicated" : {
           "type" : "boolean"
-        },
-        "brokerPublishTime" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
-        "messageId" : {
-          "$ref" : "#/definitions/MessageId"
-        },
-        "encryptionCtx" : {
-          "$ref" : "#/definitions/EncryptionContext"
-        },
-        "redeliveryCount" : {
-          "type" : "integer",
-          "format" : "int32"
-        },
-        "readerSchema" : {
-          "$ref" : "#/definitions/SchemaObject"
         }
       }
     },
@@ -2833,11 +2833,11 @@
         "rootName" : {
           "type" : "string"
         },
-        "fullRootName" : {
-          "$ref" : "#/definitions/PropertyName"
-        },
         "subtypeResolver" : {
           "$ref" : "#/definitions/SubtypeResolver"
+        },
+        "fullRootName" : {
+          "$ref" : "#/definitions/PropertyName"
         },
         "defaultVisibilityChecker" : {
           "$ref" : "#/definitions/VisibilityCheckerObject"
@@ -2851,11 +2851,11 @@
         "typeFactory" : {
           "$ref" : "#/definitions/TypeFactory"
         },
-        "handlerInstantiator" : {
-          "$ref" : "#/definitions/HandlerInstantiator"
-        },
         "propertyNamingStrategy" : {
           "$ref" : "#/definitions/PropertyNamingStrategy"
+        },
+        "handlerInstantiator" : {
+          "$ref" : "#/definitions/HandlerInstantiator"
         },
         "dateFormat" : {
           "$ref" : "#/definitions/DateFormat"
