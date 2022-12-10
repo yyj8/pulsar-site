@@ -450,11 +450,11 @@
         "config" : {
           "$ref" : "#/definitions/DeserializationConfig"
         },
-        "parser" : {
-          "$ref" : "#/definitions/JsonParser"
-        },
         "typeFactory" : {
           "$ref" : "#/definitions/TypeFactory"
+        },
+        "parser" : {
+          "$ref" : "#/definitions/JsonParser"
         },
         "annotationIntrospector" : {
           "$ref" : "#/definitions/AnnotationIntrospector"
@@ -536,6 +536,12 @@
         "contentType" : {
           "$ref" : "#/definitions/JavaType"
         },
+        "arrayType" : {
+          "type" : "boolean"
+        },
+        "throwable" : {
+          "type" : "boolean"
+        },
         "bindings" : {
           "$ref" : "#/definitions/TypeBindings"
         },
@@ -544,12 +550,6 @@
         },
         "keyType" : {
           "$ref" : "#/definitions/JavaType"
-        },
-        "arrayType" : {
-          "type" : "boolean"
-        },
-        "throwable" : {
-          "type" : "boolean"
         },
         "javaLangObject" : {
           "type" : "boolean"
@@ -677,13 +677,13 @@
           "type" : "integer",
           "format" : "int32"
         },
-        "charOffset" : {
-          "type" : "integer",
-          "format" : "int64"
-        },
         "columnNr" : {
           "type" : "integer",
           "format" : "int32"
+        },
+        "charOffset" : {
+          "type" : "integer",
+          "format" : "int64"
         }
       }
     },
@@ -850,11 +850,11 @@
     "JsonSerializerObject" : {
       "type" : "object",
       "properties" : {
-        "delegatee" : {
-          "$ref" : "#/definitions/JsonSerializerObject"
-        },
         "unwrappingSerializer" : {
           "type" : "boolean"
+        },
+        "delegatee" : {
+          "$ref" : "#/definitions/JsonSerializerObject"
         }
       }
     },
@@ -864,12 +864,12 @@
         "parent" : {
           "$ref" : "#/definitions/JsonStreamContext"
         },
+        "typeDesc" : {
+          "type" : "string"
+        },
         "currentIndex" : {
           "type" : "integer",
           "format" : "int32"
-        },
-        "typeDesc" : {
-          "type" : "string"
         },
         "currentName" : {
           "type" : "string"

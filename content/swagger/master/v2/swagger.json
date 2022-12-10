@@ -28346,10 +28346,10 @@
         "BookieAffinityGroupData": {
             "type": "object",
             "properties": {
-                "bookkeeperAffinityGroupSecondary": {
+                "bookkeeperAffinityGroupPrimary": {
                     "type": "string"
                 },
-                "bookkeeperAffinityGroupPrimary": {
+                "bookkeeperAffinityGroupSecondary": {
                     "type": "string"
                 }
             }
@@ -28357,10 +28357,10 @@
         "BookieInfo": {
             "type": "object",
             "properties": {
-                "hostname": {
+                "rack": {
                     "type": "string"
                 },
-                "rack": {
+                "hostname": {
                     "type": "string"
                 }
             }
@@ -28967,11 +28967,11 @@
                 "config": {
                     "$ref": "#/definitions/DeserializationConfig"
                 },
-                "parser": {
-                    "$ref": "#/definitions/JsonParser"
-                },
                 "typeFactory": {
                     "$ref": "#/definitions/TypeFactory"
+                },
+                "parser": {
+                    "$ref": "#/definitions/JsonParser"
                 },
                 "annotationIntrospector": {
                     "$ref": "#/definitions/AnnotationIntrospector"
@@ -29060,12 +29060,12 @@
         "FunctionInstanceStatsData": {
             "type": "object",
             "properties": {
+                "oneMin": {
+                    "$ref": "#/definitions/FunctionInstanceStatsDataBase"
+                },
                 "lastInvocation": {
                     "type": "integer",
                     "format": "int64"
-                },
-                "oneMin": {
-                    "$ref": "#/definitions/FunctionInstanceStatsDataBase"
                 },
                 "userMetrics": {
                     "type": "object",
@@ -29074,14 +29074,6 @@
                         "format": "double"
                     }
                 },
-                "userExceptionsTotal": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "avgProcessLatency": {
-                    "type": "number",
-                    "format": "double"
-                },
                 "receivedTotal": {
                     "type": "integer",
                     "format": "int64"
@@ -29093,20 +29085,20 @@
                 "systemExceptionsTotal": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "userExceptionsTotal": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "avgProcessLatency": {
+                    "type": "number",
+                    "format": "double"
                 }
             }
         },
         "FunctionInstanceStatsDataBase": {
             "type": "object",
             "properties": {
-                "userExceptionsTotal": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "avgProcessLatency": {
-                    "type": "number",
-                    "format": "double"
-                },
                 "receivedTotal": {
                     "type": "integer",
                     "format": "int64"
@@ -29118,6 +29110,14 @@
                 "systemExceptionsTotal": {
                     "type": "integer",
                     "format": "int64"
+                },
+                "userExceptionsTotal": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "avgProcessLatency": {
+                    "type": "number",
+                    "format": "double"
                 }
             }
         },
@@ -29323,6 +29323,12 @@
                 "contentType": {
                     "$ref": "#/definitions/JavaType"
                 },
+                "arrayType": {
+                    "type": "boolean"
+                },
+                "throwable": {
+                    "type": "boolean"
+                },
                 "bindings": {
                     "$ref": "#/definitions/TypeBindings"
                 },
@@ -29331,12 +29337,6 @@
                 },
                 "keyType": {
                     "$ref": "#/definitions/JavaType"
-                },
-                "arrayType": {
-                    "type": "boolean"
-                },
-                "throwable": {
-                    "type": "boolean"
                 },
                 "javaLangObject": {
                     "type": "boolean"
@@ -29464,13 +29464,13 @@
                     "type": "integer",
                     "format": "int32"
                 },
-                "charOffset": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "columnNr": {
                     "type": "integer",
                     "format": "int32"
+                },
+                "charOffset": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         },
@@ -29672,11 +29672,11 @@
         "JsonSerializerObject": {
             "type": "object",
             "properties": {
-                "delegatee": {
-                    "$ref": "#/definitions/JsonSerializerObject"
-                },
                 "unwrappingSerializer": {
                     "type": "boolean"
+                },
+                "delegatee": {
+                    "$ref": "#/definitions/JsonSerializerObject"
                 }
             }
         },
@@ -29686,12 +29686,12 @@
                 "parent": {
                     "$ref": "#/definitions/JsonStreamContext"
                 },
+                "typeDesc": {
+                    "type": "string"
+                },
                 "currentIndex": {
                     "type": "integer",
                     "format": "int32"
-                },
-                "typeDesc": {
-                    "type": "string"
                 },
                 "currentName": {
                     "type": "string"
@@ -29951,6 +29951,12 @@
                 "loadReportType": {
                     "type": "string"
                 },
+                "cpu": {
+                    "$ref": "#/definitions/ResourceUsage"
+                },
+                "memory": {
+                    "$ref": "#/definitions/ResourceUsage"
+                },
                 "directMemory": {
                     "$ref": "#/definitions/ResourceUsage"
                 },
@@ -29963,12 +29969,6 @@
                 "lastUpdate": {
                     "type": "integer",
                     "format": "int64"
-                },
-                "cpu": {
-                    "$ref": "#/definitions/ResourceUsage"
-                },
-                "memory": {
-                    "$ref": "#/definitions/ResourceUsage"
                 },
                 "msgThroughputIn": {
                     "type": "number",
@@ -31168,15 +31168,15 @@
         "ResourceDescription": {
             "type": "object",
             "properties": {
+                "usagePct": {
+                    "type": "integer",
+                    "format": "int32"
+                },
                 "resourceUsage": {
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/ResourceUsage"
                     }
-                },
-                "usagePct": {
-                    "type": "integer",
-                    "format": "int32"
                 }
             }
         },
@@ -32069,11 +32069,11 @@
                 "workerConfig": {
                     "$ref": "#/definitions/WorkerConfig"
                 },
-                "functions": {
-                    "$ref": "#/definitions/FunctionsWorkerService"
-                },
                 "sinks": {
                     "$ref": "#/definitions/SinksWorkerService"
+                },
+                "functions": {
+                    "$ref": "#/definitions/FunctionsWorkerService"
                 }
             }
         },
